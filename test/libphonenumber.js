@@ -1,42 +1,38 @@
 const test = require('tape');
-const intlPhoneNumber = require('..');
+const libphonenumber = require('..');
 
-test('intlPhoneNumber should export format types', t => {
-    t.equal(typeof intlPhoneNumber.FORMAT_E164, 'number');
-    t.equal(typeof intlPhoneNumber.FORMAT_INTERNATIONAL, 'number');
-    t.equal(typeof intlPhoneNumber.FORMAT_NATIONAL, 'number');
-    t.equal(typeof intlPhoneNumber.FORMAT_RFC3966, 'number');
-    t.end()
-});
-
-test('intlPhoneNumber should export supported (region, code) tuples', t => {
-    const fr = intlPhoneNumber.supported.find(({region}) => region === 'FR');
-    t.equal(fr.code, 33);
-    t.end()
-});
-
-test('intlPhoneNumber should export parse method', t => {
-  const {code, number, region} = intlPhoneNumber.parse('DE', '+33608611242');
-  t.equals(code, 33);
-  t.equals(number, 608611242);
-  t.equals(region, 'FR');
+test('libphonenumber should export getSupportedRegionCodes', t => {
+  t.ok(libphonenumber.getSupportedRegionCodes().find(regionCode => regionCode === 'FR'));
   t.end();
 });
 
-test('intlPhoneNumber should export parse method with defaults', t => {
-  const {code, number, region} = intlPhoneNumber.parse('DE', '6086112');
-  t.equals(code, 49);
-  t.equals(number, 6086112);
-  t.equals(region, 'DE');
+test('libphonenumber should export getCountryCodeForRegionCode', t => {
+  t.equals(libphonenumber.getCountryCodeForRegionCode('FR'), 33);
   t.end();
 });
 
+test('libphonenumber should export getRegionCodeForCountryCode', t => {
+  t.equals(libphonenumber.getRegionCodeForCountryCode(33), 'FR');
+  t.end();
+});
 
-test('intlPhoneNumber should export format method', t => {
-  const parsed = intlPhoneNumber.parse('DE', '+33608611242');
-  t.equals(intlPhoneNumber.format(null, parsed), '+33608611242');
-  t.equals(intlPhoneNumber.format(intlPhoneNumber.FORMAT_INTERNATIONAL, parsed), '+33 6 08 61 12 42');
-  t.equals(intlPhoneNumber.format(intlPhoneNumber.FORMAT_NATIONAL, parsed), '06 08 61 12 42');
-  t.equals(intlPhoneNumber.format(intlPhoneNumber.FORMAT_RFC3966, parsed), 'tel:+33-6-08-61-12-42');
+test('libphonenumber should export parseCountryCode', t => {
+  t.equals(libphonenumber.parseCountryCode('FR'), 33);
+  t.equals(libphonenumber.parseCountryCode('FR', '060708'), 33);
+  t.equals(libphonenumber.parseCountryCode('FR', '+4960708'), 49);
+  t.end();
+});
+
+test('libphonenumber should export formatNumber', t => {
+  t.equals(libphonenumber.formatNumber('FR'), undefined);
+  t.equals(libphonenumber.formatNumber('FR', '0607081011'), '06 07 08 10 11');
+  t.equals(libphonenumber.formatNumber('FR', '+49607081011'), '+49 6070 81011');
+  t.end();
+});
+
+test('libphonenumber should export formatInputNumber', t => {
+  t.equals(libphonenumber.formatInputNumber('FR'), undefined);
+  t.equals(libphonenumber.formatInputNumber('FR', '060708'), '06 07 08');
+  t.equals(libphonenumber.formatInputNumber('FR', '+4960708'), '+49 6070 8');
   t.end();
 });
