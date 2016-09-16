@@ -1,0 +1,41 @@
+{
+  "name": "libphonenumber",
+  "version": "0.0.0",
+  "description": "libphonenumber customized",
+  "main": "dist/libphonenumber.js",
+  "scripts": {
+    "install:all": "npm run install:libphonenumber && npm run install:closure-library && npm run install:closure-compiler && npm run install:closure-linter && npm run install:python-flags",
+    "install:libphonenumber": "git clone https://github.com/googlei18n/libphonenumber/ repositories/libphonenumber",
+    "install:closure-library": "git clone https://github.com/google/closure-library/ repositories/closure-library",
+    "install:closure-compiler": "git clone https://github.com/google/closure-compiler/ repositories/closure-compiler",
+    "install:closure-linter": "git clone https://github.com/google/closure-linter/ repositories/closure-linter",
+    "install:python-flags": "git clone https://github.com/google/python-gflags.git repositories/python-flags",
+    "update:all": "npm run update:libphonenumber && npm run update:closure-library && npm run update:closure-compiler && npm run update:closure-linter && npm run update:python-flags",
+    "update:libphonenumber": "cd repositories/libphonenumber && git pull --rebase",
+    "update:closure-library": "cd repositories/closure-library && git pull --rebase",
+    "update:closure-compiler": "cd repositories/closure-compiler && git pull --rebase",
+    "update:closure-linter": "cd repositories/closure-linter && git pull --rebase",
+    "update:python-flags": "cd repositories/python-flags && git pull --rebase",
+    "build:all": "npm run build:closure-compiler && npm run build:libphonenumber",
+    "build:closure-compiler": "bin/build-closure-compiler.sh",
+    "build:libphonenumber": "bin/build-libphonenumber.sh",
+    "test": "tape test/**/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/doctolib/libphonenumber.git"
+  },
+  "keywords": [
+    "libphonenumber",
+    "intl"
+  ],
+  "author": "salper <stefen.alper@doctolib.fr>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/doctolib/libphonenumber/issues"
+  },
+  "homepage": "https://github.com/doctolib/libphonenumber#readme",
+  "devDependencies": {
+    "tape": "^4.6.0"
+  }
+}
