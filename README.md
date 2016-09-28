@@ -36,6 +36,8 @@ Return region code from provided number or current region code.
 libphonenumber.isValidNumber(regionCode: String, number: String): Boolean
 ```
 
+Return true if phone number is valid for regionCode.
+
 ```javascript
 libphonenumber.injectCountryCode(defaultRegionCode: String, regionCode: String, number: String): Boolean
 ```
