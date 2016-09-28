@@ -21,37 +21,35 @@ npm run update::all && npm run build:all
 ## API
 
 ```javascript
-libphonenumber.getSupportedRegionCodes(): String[]
+libphonenumber.getSupportedRegionCodes(): [{regionCode, countryCode}]
 ```
 
 List supported region codes.
 
 ```javascript
-libphonenumber.getCountryCodeForRegionCode(regionCode: String): Number
-```
-
-Return country code for provided region code.
-
-```javascript
-libphonenumber.getRegionCodeForCountryCode(countryCode: Number): String
-```
-
-Return region code for provided country code.
-
-```javascript
-libphonenumber.parseCountryCode(currentRegionCode: String, number: String): String
+libphonenumber.parseRegionCode(regionCode: String, number: String): String
 ```
 
 Return region code from provided number or current region code.
 
 ```javascript
-libphonenumber.formatNumber(currentRegionCode: String, number: String): String
+libphonenumber.isValidNumber(regionCode: String, number: String): Boolean
+```
+
+```javascript
+libphonenumber.injectCountryCode(defaultRegionCode: String, regionCode: String, number: String): Boolean
+```
+
+Replace or inject number countryCode.
+
+```javascript
+libphonenumber.formatNumber(defaultRegionCode: String, regionCode: String, number: String): String
 ```
 
 Format number as a national one if number region is the current region, otherwise as an international none.
 
 ```javascript
-libphonenumber.formatInputNumber(currentRegionCode: String, number: String): String
+libphonenumber.formatInputNumber(regionCode: String, number: String): String
 ```
 
 Try to format provided number as it is typed.
