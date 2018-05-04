@@ -43,3 +43,4 @@ repositories
 ## NPM SPECIFIC ##
 src/
 test/
+bin/
