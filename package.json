@@ -1,5 +1,5 @@
 {
-  "name": "libphonenumber",
+  "name": "libphonenumber-js-port",
   "version": "0.0.1",
   "description": "libphonenumber customized",
   "main": "dist/libphonenumber.js",
