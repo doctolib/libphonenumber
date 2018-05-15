@@ -4,18 +4,19 @@ Phone number internationalization interface using [libphonenumber](https://githu
 
 ## Requirements
 
-[Node](https://nodejs.org/en/), [Maven](https://maven.apache.org/) and [Ant](https://ant.apache.org/).
+[Node](https://nodejs.org/en/), Java, [Maven](https://maven.apache.org/) and [Ant](https://ant.apache.org/).
 
 ## Install
 
 ```bash
 # Install
-npm install && npm run install::all && npm run build:all
+npm install && npm run install:all && npm run build:all
 ```
 
 ## Update
+
 ```bash
-npm run update::all && npm run build:all
+npm run update:all && npm run build:all
 ```
 
 ## API
