@@ -34,5 +34,6 @@ test('libphonenumber should export isValidNumber', t => {
   t.equals(libphonenumber.isValidNumber('FR', '0608115260'), true);
   t.equals(libphonenumber.isValidNumber('FR', '06081152601'), false);
   t.equals(libphonenumber.isValidNumber('FR', '+33608115260'), true);
+  t.equals(libphonenumber.isValidNumber('BE', '+32456789000'), true);
   t.end();
 });
